@@ -1,13 +1,14 @@
 import { Card, Button } from "react-bootstrap";
 import { useHomeProvider } from "../../../providers/HomeStoreState";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 function Movies() {
   const { movies } = useHomeProvider();
-  console.log(movies.Search);
   return (
     <div className="moviesDiv">
       {movies.Search?.map((item, index) => (
         <Card key={index} style={{ width: "18rem" }}>
+          <Link className="nav-link" to={`/movie/${item.Title}`}>
           <Card.Img variant="top" src={item.Poster} />
           <Card.Body>
             <Card.Title>{item.Title}</Card.Title>
@@ -23,6 +24,7 @@ function Movies() {
               Go
             </motion.button>
           </Card.Body>
+          </Link>
         </Card>
       ))}
     </div>
