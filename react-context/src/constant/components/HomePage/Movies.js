@@ -9,7 +9,7 @@ function Movies() {
       {movies.Search?.map((item, index) => (
         <Card key={index} style={{ width: "18rem" }}>
           <Link className="nav-link" to={`/movie/${item.Title}`}>
-          <Card.Img variant="top" src={item.Poster} />
+          <Card.Img variant="top"  height="350" src={item.Poster} />
           <Card.Body>
             <Card.Title>{item.Title}</Card.Title>
             <Card.Text>{item.Year}</Card.Text>
