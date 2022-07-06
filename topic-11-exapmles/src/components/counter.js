@@ -1,25 +1,37 @@
-import { connect } from "react-redux";
-import {     setDecrement, setIncrement } from "../store/actions/counter";
+import { connect, useDispatch, useSelector } from "react-redux";
+import { setDecrement, setIncrement } from "../store/actions/counter";
 
-function Counter(props) {
+function Counter() {
+  const state = useSelector((state) => state);
+  const dispatch = useDispatch();
 
-    console.log(props);
-  return <div className="d-flex justify-content-center mt-5">
-
-  
-  <button className="btn btn-primary px-3 mx-3" onClick={()=>props.setIncrementDispath()}>+</button>
-  <p className="h3">{props.counter}</p>
-  <button disabled={props.counter === 0 && true}  className="btn btn-danger px-3 mx-3" onClick={()=>props.setDecrementdispath()}>-</button>
-  </div>;
+  return (
+    <div className="d-flex justify-content-center mt-5">
+      <button
+        className="btn btn-primary px-3 mx-3"
+        onClick={() => dispatch(setIncrement())}
+      >
+        +
+      </button>
+      <p className="h3">{state.counterReducer.counter}</p>
+      <button
+        disabled={state.counterReducer.counter === 0 && true}
+        className="btn btn-danger px-3 mx-3"
+        onClick={() => dispatch(setDecrement())}
+      >
+        -
+      </button>
+    </div>
+  );
 }
 
-const mapStateToProps = (state) => ({
-    counter: state.counterReducer.counter
-})
+// const mapStateToProps = (state) => ({
+//     counter: state.counterReducer.counter
+// })
 
-const mapDispatchToProps = (dispatch) =>({
-    setIncrementDispath: () => dispatch(setIncrement()),
-    setDecrementdispath: () => dispatch(setDecrement())
-});
+// const mapDispatchToProps = (dispatch) =>({
+//     setIncrementDispath: () => dispatch(setIncrement()),
+//     setDecrementdispath: () => dispatch(setDecrement())
+// });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Counter);
+export default Counter;

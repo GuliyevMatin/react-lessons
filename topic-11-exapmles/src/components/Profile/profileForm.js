@@ -1,8 +1,10 @@
 import { Formik } from "formik";
-import { connect } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import {setWriteForm} from "../../store/actions/profile"
 function ProfileForm(props) {
-console.log(props);
+
+const dispatch = useDispatch()
+
   return (
     <div className="profileform col-3">
       <Formik
@@ -27,7 +29,7 @@ console.log(props);
         onSubmit={(values, { setSubmitting,resetForm }) => {
            
           setTimeout(() => {
-            props.setWriteFormDispatch(values)
+            dispatch(setWriteForm(values))
        
             setSubmitting(false);
             resetForm()
@@ -121,13 +123,13 @@ console.log(props);
 }
 
 
-const mapStateToProps = (state) => ({
-    showForm : state.profileReducer.form
-})
+// const mapStateToProps = (state) => ({
+//     showForm : state.profileReducer.form
+// })
 
 
-const mapDispatchToProps = (dispatch) => ({
-    setWriteFormDispatch : (obj)=> dispatch(setWriteForm(obj)),
-})
+// const mapDispatchToProps = (dispatch) => ({
+//     setWriteFormDispatch : (obj)=> dispatch(setWriteForm(obj)),
+// })
 
-export default connect(null,mapDispatchToProps)(ProfileForm) ;
+export default ProfileForm ;
