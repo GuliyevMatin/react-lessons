@@ -1,17 +1,20 @@
-import {useSelector,useDispatch} from "react-redux"
 import './App.css';
-// import Home from "./Home";
-import { increment } from "./store/slices/homeSlices";
+import axios from "axios"
+import { useEffect } from 'react';
 
 function App() {
-  const state = useSelector(state=>state)
-  // const dispatch = useDispatch()
-  console.log(state);
+  
+  useEffect(()=>{
+    axios("http://localhost:8000/api/products",{
+      headers: {
+        Accept: "application/json"
+      }
+    }).then(res=>console.log(res))
+  },[])
+
   return (
     <div className="App">
-      {/* <p>{state.home.counter}</p>
-      <button onClick={()=>dispatch(increment())}>Artir</button> */}
-      {/* <Home/> */}
+      {/* <button >Added</button> */}
     </div>
   );
 }
